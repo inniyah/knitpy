@@ -300,8 +300,10 @@ class TemporaryOutputDocument(LoggingConfigurable):
             mimedata = decodebytes(mimedata.encode())
             # save as a file
             if not self.context is None:
-                filename = u"%s-%s.%s" % (self.context.chunk_label,
+                self.context.number_of_images = self.context.number_of_images + 1
+                filename = u"%s-%s_img-%s.%s" % (self.context.chunk_label,
                                           self.context.chunk_plot_number,
+                                          self.context.number_of_images,
                                           IMAGE_MIMETYPE_TO_FILEEXTENSION[mimetype])
                 f = open(os.path.join(self.plotdir, filename), mode='w+b')
             else:
@@ -312,7 +314,7 @@ class TemporaryOutputDocument(LoggingConfigurable):
             f.write(mimedata)
             f.close()
             relative_name= "%s/%s/%s" % (self.outputdir, os.path.basename(self.plotdir),
-                                         os.path.basename(f.name))
+                                         os.path.basename(f.name), )
             self.log.info("Written file of type %s to %s", mimetype, relative_name)
             template = "![%s](%s)"
             self.add_asis("\n")

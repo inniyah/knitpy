@@ -814,6 +814,8 @@ class ExecutionContext(LoggingConfigurable):
     chunk_label = Unicode(None, config=False, allow_none=True, help="current chunk label")
     chunk_plot_number = Integer(0, config=False, allow_none=False,
                                 help="current plot number in this chunk")
+    number_of_images = Integer(0, config=False, allow_none=False,
+                               help="number of images")
     def _chunk_label_changed(self, name, old, new):
         if old != new:
             self.chunk_plot_number = 0
