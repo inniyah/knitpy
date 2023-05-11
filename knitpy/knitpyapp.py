@@ -25,7 +25,7 @@ import sys
 from jupyter_core.application import JupyterApp, base_aliases, base_flags
 from traitlets.config import catch_config_error
 from traitlets import (
-    Unicode, List, Bool, Type, CaselessStrEnum,
+    Unicode, List, Bool, Type, CaselessStrEnum, default,
 )
 
 
@@ -81,13 +81,17 @@ class KnitpyApp(JupyterApp):
     aliases = knitpy_aliases
     flags = knitpy_flags
 
+    @default("log_level")
     def _log_level_default(self):
         return logging.INFO
 
+    # The classes added here determine how configuration will be documented
+    classes = List()
+
+    @default("classes")
     def _classes_default(self):
-        classes = [KnitpyApp, Knitpy, TemporaryOutputDocument, ProfileDir]
         # TODO: engines should be added here
-        return classes
+        return [KnitpyApp, Knitpy, TemporaryOutputDocument]
 
     description = Unicode(
         u"""This application is used to convert pymd documents (*.pymd)
