@@ -77,7 +77,7 @@ class Knitpy(LoggingConfigurable):
     kernel_debug = Bool(False, config=True,
         help="""Whether to output kernel messages to the (debug) log""")
 
-    timeout = Integer(10, config=True, help="timeout for individual code executions")
+    timeout = Integer(500, config=True, help="timeout for individual code executions")
 
     # Things for the parser...
     chunk_begin = CRegExpMultiline(r'^\s*```+\s*{[.]?(?P<engine>[a-z]+)\s*(?P<args>.*)}\s*$',
