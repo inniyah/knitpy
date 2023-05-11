@@ -2,7 +2,7 @@ from setuptools import setup
 
 try:
     from pypandoc import convert
-    long_desc = convert(open('README.md').read(), to="rst", format="markdown")
+    long_desc = convert_text(open('README.md').read(), to="rst", format="markdown")
 except:
     long_desc = 'knitpy - Elegant, flexible and fast dynamic report generation with python'
 
