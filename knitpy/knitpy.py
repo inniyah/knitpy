@@ -768,10 +768,10 @@ class Knitpy(LoggingConfigurable):
                            "+autolink_bare_uris" \
                            "+ascii_identifiers" \
                            "+tex_math_single_backslash-implicit_figures" \
-                           "+fenced_code_attributes"
+                           "+fenced_code_attributes" \
+                           "+smart" # typographically correct output (curly quotes, etc)
 
-            extra = ["--smart", # typographically correct output (curly quotes, etc)
-                     "--email-obfuscation", "none", #do not obfuscation email names with javascript
+            extra = ["--email-obfuscation", "none", #do not obfuscation email names with javascript
                      "--self-contained", # include img/scripts as data urls
                      "--standalone", # html with header + footer
                      "--section-divs",
