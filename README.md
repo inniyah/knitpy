@@ -1,12 +1,8 @@
-
-# THIS PROJECT IS NOT ANYMORE ACTIVE
-
-A replacement could be [jupyter-book](https://github.com/executablebooks/jupyter-book).
-
 # knitpy: Elegant, flexible and fast dynamic report generation with python
 
-This is a port of knitr (http://yihui.name/knitr/) and rmarkdown
-(http://rmarkdown.rstudio.com/) to python.
+This project is a fork of https://github.com/jankatins/knitpy which, in turn,
+is a port of knitr (http://yihui.name/knitr/) and rmarkdown
+(http://rmarkdown.rstudio.com/) to Python.
 
 To start with, you can run the [example overview document](examples/knitpy_overview.pymd). To 
 convert to all defined output formats, run `knitpy --to="all"  -- examples\knitpy_overview.pymd`.
