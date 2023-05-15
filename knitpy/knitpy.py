@@ -37,6 +37,14 @@ from traitlets import (
 from .py3compat import unicode_type, iteritems, getcwd
 from .path import expand_path
 
+import jupyter_client
+
+# jupyter_client 7.0+ has async channel methods that we expect to be sync here
+if jupyter_client._version.version_info[0] >= 7:
+    from jupyter_client.utils import run_sync
+else:
+    run_sync = lambda x: x
+
 # Stuff for the kernels
 from jupyter_client.multikernelmanager import MultiKernelManager
 from jupyter_client.kernelspec import KernelSpecManager
@@ -444,7 +452,7 @@ class Knitpy(LoggingConfigurable):
         # At first we have to wait until the kernel tells us it is finished with running the code
         while True:
             try:
-                msg = kernel.shell_channel.get_msg(timeout=self.timeout)
+                msg = run_sync(kernel.shell_channel.get_msg)(timeout=self.timeout)
                 if self.kernel_debug:
                     self.log.debug("shell msg: %s", msg)
             except Empty:
