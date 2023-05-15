@@ -147,7 +147,7 @@ class Knitpy(LoggingConfigurable):
             if end is None:
                 raise ParseException("Found no metadata end separator.")
             try:
-                res = yaml.load(doc[start.end():end.start()])
+                res = yaml.safe_load(doc[start.end():end.start()])
                 self.log.debug("Metadata: %s", res)
                 metadata.update(res)
             except Exception as e:
